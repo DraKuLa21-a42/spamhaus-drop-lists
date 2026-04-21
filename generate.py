@@ -11,9 +11,6 @@ URLS = {
 OUTPUT_DIR = "output"
 
 
-# -----------------------------
-# Fetch with fallback parsing
-# -----------------------------
 def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
@@ -28,78 +25,66 @@ def fetch(url):
         if not line:
             continue
 
-        # пробуємо JSON рядок
         try:
             obj = json.loads(line)
-
-            if isinstance(obj, dict):
-                cidr = obj.get("cidr")
-                if cidr:
-                    cidrs.append(cidr)
-
-            continue
+            if isinstance(obj, dict) and "cidr" in obj:
+                cidrs.append(obj["cidr"])
+                continue
         except:
             pass
 
-        # fallback: plain CIDR
         if "/" in line:
             cidrs.append(line.split()[0])
 
     return cidrs
-# -----------------------------
-# ipset generator
-# -----------------------------
-def generate_ipset(name, cidrs, family):
+
+
+def generate_mikrotik(cidrs, version):
+    lines = []
+
+    if version == "v4":
+        base = "/ip firewall address-list"
+    else:
+        base = "/ipv6 firewall address-list"
+
+    list_name = f"spamhaus_{version}"
+
+    lines.append(f"{base} remove [find list={list_name}]")
+
+    for c in cidrs:
+        lines.append(f"{base} add list={list_name} address={c}")
+
+    return "\n".join(lines)
+
+
+def generate_ipset(cidrs, version):
+    family = "inet" if version == "v4" else "inet6"
+    name = f"spamhaus_{version}"
+
     lines = [f"create {name} hash:net family {family}"]
+
     for c in cidrs:
         lines.append(f"add {name} {c}")
-    return "\n".join(lines)
-
-
-# -----------------------------
-# MikroTik generator
-# -----------------------------
-def generate_mikrotik(list_name, cidrs):
-    lines = [
-        f"/ip firewall address-list remove [find list={list_name}]"
-    ]
-
-    for c in cidrs:
-        lines.append(
-            f"/ip firewall address-list add list={list_name} address={c}"
-        )
 
     return "\n".join(lines)
 
 
-# -----------------------------
-# MAIN
-# -----------------------------
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    v4 = fetch(URLS["v4"])
-    v6 = fetch(URLS["v6"])
+    for version, url in URLS.items():
+        cidrs = fetch(url)
+        cidrs = list(set(cidrs))  # дедуп
 
-    v4 = [x for x in v4 if x]
-    v6 = [x for x in v6 if x]
+        print(f"{version}: {len(cidrs)} networks")
 
-    print(f"[+] IPv4: {len(v4)} networks")
-    print(f"[+] IPv6: {len(v6)} networks")
+        # MikroTik
+        with open(f"{OUTPUT_DIR}/spamhaus_{version}.rsc", "w") as f:
+            f.write(generate_mikrotik(cidrs, version))
 
-    # ---------------- IPSET ----------------
-    with open(f"{OUTPUT_DIR}/spamhaus_v4.ipset", "w") as f:
-        f.write(generate_ipset("spamhaus_v4", v4, "inet"))
-
-    with open(f"{OUTPUT_DIR}/spamhaus_v6.ipset", "w") as f:
-        f.write(generate_ipset("spamhaus_v6", v6, "inet6"))
-
-    # ---------------- MikroTik ----------------
-    with open(f"{OUTPUT_DIR}/spamhaus_v4.rsc", "w") as f:
-        f.write(generate_mikrotik("spamhaus_v4", v4))
-
-    with open(f"{OUTPUT_DIR}/spamhaus_v6.rsc", "w") as f:
-        f.write(generate_mikrotik("spamhaus_v6", v6))
+        # ipset
+        with open(f"{OUTPUT_DIR}/spamhaus_{version}.ipset", "w") as f:
+            f.write(generate_ipset(cidrs, version))
 
 
 if __name__ == "__main__":
