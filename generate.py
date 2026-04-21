@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import requests
+import os
 
+os.makedirs("output", exist_ok=True)
 URLS = {
     "v4": "https://www.spamhaus.org/drop/drop_v4.json",
     "v6": "https://www.spamhaus.org/drop/drop_v6.json"
