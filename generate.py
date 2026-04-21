@@ -17,36 +17,22 @@ OUTPUT_DIR = "output"
 def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
-    text = r.text.strip()
 
-    # 1. Try JSON
-    try:
-        data = json.loads(text)
+    data = r.json()
 
-        if isinstance(data, dict) and "drops" in data:
-            return [item.get("cidr") for item in data["drops"] if "cidr" in item]
-
-        if isinstance(data, list):
-            return [item.get("cidr") for item in data if "cidr" in item]
-
-    except Exception:
-        pass
-
-    # 2. Fallback: plain text parsing
     cidrs = []
-    for line in text.splitlines():
-        line = line.strip()
 
-        if not line or line.startswith("#") or line.startswith(";"):
-            continue
+    drops = data.get("drops", []) if isinstance(data, dict) else data
 
-        cidr = line.split()[0]
-        if "/" in cidr:
-            cidrs.append(cidr)
+    for item in drops:
+        if isinstance(item, str):
+            cidrs.append(item)
+        elif isinstance(item, dict):
+            cidr = item.get("cidr")
+            if cidr:
+                cidrs.append(cidr)
 
     return cidrs
-
-
 # -----------------------------
 # ipset generator
 # -----------------------------
