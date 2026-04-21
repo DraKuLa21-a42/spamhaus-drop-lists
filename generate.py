@@ -18,19 +18,32 @@ def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
 
-    data = r.json()
+    text = r.text.strip()
 
     cidrs = []
 
-    drops = data.get("drops", []) if isinstance(data, dict) else data
+    for line in text.splitlines():
+        line = line.strip()
 
-    for item in drops:
-        if isinstance(item, str):
-            cidrs.append(item)
-        elif isinstance(item, dict):
-            cidr = item.get("cidr")
-            if cidr:
-                cidrs.append(cidr)
+        if not line:
+            continue
+
+        # пробуємо JSON рядок
+        try:
+            obj = json.loads(line)
+
+            if isinstance(obj, dict):
+                cidr = obj.get("cidr")
+                if cidr:
+                    cidrs.append(cidr)
+
+            continue
+        except:
+            pass
+
+        # fallback: plain CIDR
+        if "/" in line:
+            cidrs.append(line.split()[0])
 
     return cidrs
 # -----------------------------
