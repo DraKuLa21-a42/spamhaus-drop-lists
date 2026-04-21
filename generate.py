@@ -15,31 +15,41 @@ def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
 
-    data = r.json()
+    text = r.text.strip()
 
     cidrs = []
 
-    drops = data.get("drops", []) if isinstance(data, dict) else data
+    for line in text.splitlines():
+        line = line.strip()
 
-    for item in drops:
-
-        # 🔥 ВАЖЛИВО: тільки словники з cidr
-        if not isinstance(item, dict):
+        if not line:
             continue
 
-        if "cidr" not in item:
-            continue
-
-        cidr = item["cidr"]
-
-        # додатковий захист
+        # проба JSON-рядка
         try:
-            ipaddress.ip_network(cidr, strict=False)
-            cidrs.append(cidr)
+            obj = json.loads(line)
+
+            if isinstance(obj, dict) and "cidr" in obj:
+                cidrs.append(obj["cidr"])
+
+            continue
+        except:
+            pass
+
+        # fallback (на випадок plain text)
+        if "/" in line:
+            cidrs.append(line.split()[0])
+
+    # фінальна валідація
+    clean = []
+    for c in cidrs:
+        try:
+            ipaddress.ip_network(c, strict=False)
+            clean.append(c)
         except:
             continue
 
-    return sorted(set(cidrs))
+    return sorted(set(clean))
     
 def generate_mikrotik(cidrs, version):
     lines = []
