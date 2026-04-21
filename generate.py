@@ -2,6 +2,7 @@
 import os
 import json
 import requests
+import ipaddress
 
 URLS = {
     "v4": "https://www.spamhaus.org/drop/drop_v4.json",
@@ -21,22 +22,25 @@ def fetch(url):
     drops = data.get("drops", []) if isinstance(data, dict) else data
 
     for item in drops:
-        if isinstance(item, dict):
-            cidr = item.get("cidr")
-        else:
-            cidr = item
 
-        if not cidr:
+        # 🔥 ВАЖЛИВО: тільки словники з cidr
+        if not isinstance(item, dict):
             continue
 
-        # 🔥 ФІЛЬТР: тільки валідний IPv6/IPv4 CIDR
+        if "cidr" not in item:
+            continue
+
+        cidr = item["cidr"]
+
+        # додатковий захист
         try:
             ipaddress.ip_network(cidr, strict=False)
             cidrs.append(cidr)
         except:
             continue
 
-    return cidrs
+    return sorted(set(cidrs))
+    
 def generate_mikrotik(cidrs, version):
     lines = []
 
