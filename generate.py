@@ -10,35 +10,33 @@ URLS = {
 
 OUTPUT_DIR = "output"
 
-
 def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
 
-    text = r.text.strip()
+    data = r.json()
 
     cidrs = []
 
-    for line in text.splitlines():
-        line = line.strip()
+    drops = data.get("drops", []) if isinstance(data, dict) else data
 
-        if not line:
+    for item in drops:
+        if isinstance(item, dict):
+            cidr = item.get("cidr")
+        else:
+            cidr = item
+
+        if not cidr:
             continue
 
+        # 🔥 ФІЛЬТР: тільки валідний IPv6/IPv4 CIDR
         try:
-            obj = json.loads(line)
-            if isinstance(obj, dict) and "cidr" in obj:
-                cidrs.append(obj["cidr"])
-                continue
+            ipaddress.ip_network(cidr, strict=False)
+            cidrs.append(cidr)
         except:
-            pass
-
-        if "/" in line:
-            cidrs.append(line.split()[0])
+            continue
 
     return cidrs
-
-
 def generate_mikrotik(cidrs, version):
     lines = []
 
