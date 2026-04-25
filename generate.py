@@ -73,7 +73,7 @@ def generate_ipset(cidrs, version):
     family = "inet" if version == "v4" else "inet6"
     name = f"spamhaus_{version}"
 
-    lines = [f"create {name} hash:net family {family}"]
+    lines = []
 
     for c in cidrs:
         lines.append(f"add {name} {c}")
