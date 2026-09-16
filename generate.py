@@ -11,6 +11,13 @@ URLS = {
 
 OUTPUT_DIR = "output"
 
+# family, table, set  для nftables
+NFT_PARAMS = {
+    "v4": ("ip", "firewall", "spamhaus_v4", "ipv4_addr"),
+    "v6": ("ip6", "firewall6", "spamhaus_v6", "ipv6_addr"),
+}
+
+
 def fetch(url):
     r = requests.get(url, timeout=20)
     r.raise_for_status()
@@ -33,7 +40,7 @@ def fetch(url):
                 cidrs.append(obj["cidr"])
 
             continue
-        except:
+        except Exception:
             pass
 
         # fallback (на випадок plain text)
@@ -46,11 +53,12 @@ def fetch(url):
         try:
             ipaddress.ip_network(c, strict=False)
             clean.append(c)
-        except:
+        except Exception:
             continue
 
     return sorted(set(clean))
-    
+
+
 def generate_mikrotik(cidrs, version):
     lines = []
 
@@ -66,19 +74,37 @@ def generate_mikrotik(cidrs, version):
     for c in cidrs:
         lines.append(f"{base} add list={list_name} address={c}")
 
-    return "\n".join(lines)
+    return "\n".join(lines) + "\n"
 
 
 def generate_ipset(cidrs, version):
     family = "inet" if version == "v4" else "inet6"
     name = f"spamhaus_{version}"
 
-    lines = []
+    lines = [f"create {name} hash:net family {family} -exist"]
 
     for c in cidrs:
         lines.append(f"add {name} {c}")
 
-    return "\n".join(lines)
+    return "\n".join(lines) + "\n"
+
+
+def generate_nftables(cidrs, version):
+    family, table, set_name, addr_type = NFT_PARAMS[version]
+
+    lines = [
+        f"add table {family} {table}",
+        f"add set {family} {table} {set_name} "
+        f"{{ type {addr_type}; flags interval; }}",
+        f"flush set {family} {table} {set_name}",
+    ]
+
+    if cidrs:
+        lines.append(f"add element {family} {table} {set_name} {{")
+        lines.append(",\n".join(f"    {c}" for c in cidrs))
+        lines.append("}")
+
+    return "\n".join(lines) + "\n"
 
 
 def main():
@@ -86,7 +112,6 @@ def main():
 
     for version, url in URLS.items():
         cidrs = fetch(url)
-        cidrs = list(set(cidrs))  # дедуп
 
         print(f"{version}: {len(cidrs)} networks")
 
@@ -97,6 +122,10 @@ def main():
         # ipset
         with open(f"{OUTPUT_DIR}/spamhaus_{version}.ipset", "w") as f:
             f.write(generate_ipset(cidrs, version))
+
+        # nftables
+        with open(f"{OUTPUT_DIR}/spamhaus_{version}.nft", "w") as f:
+            f.write(generate_nftables(cidrs, version))
 
 
 if __name__ == "__main__":
