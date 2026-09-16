@@ -1,5 +1,3 @@
-add table ip6 firewall6
-add set ip6 firewall6 spamhaus_v6 { type ipv6_addr; flags interval; }
 flush set ip6 firewall6 spamhaus_v6
 add element ip6 firewall6 spamhaus_v6 {
     2001:43f8:a21::/48,
