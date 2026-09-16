@@ -93,9 +93,6 @@ def generate_nftables(cidrs, version):
     family, table, set_name, addr_type = NFT_PARAMS[version]
 
     lines = [
-        f"add table {family} {table}",
-        f"add set {family} {table} {set_name} "
-        f"{{ type {addr_type}; flags interval; }}",
         f"flush set {family} {table} {set_name}",
     ]
 
