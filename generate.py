@@ -48,15 +48,17 @@ def fetch(url):
             cidrs.append(line.split()[0])
 
     # фінальна валідація
-    clean = []
+    networks = []
     for c in cidrs:
         try:
-            ipaddress.ip_network(c, strict=False)
-            clean.append(c)
+            networks.append(ipaddress.ip_network(c, strict=False))
         except Exception:
             continue
 
-    return sorted(set(clean))
+    # НОВЕ: об'єднуємо перекриваючись мережі
+    collapsed = list(ipaddress.collapse_addresses(networks))
+    
+    return sorted([str(net) for net in collapsed])
 
 
 def generate_mikrotik(cidrs, version):
