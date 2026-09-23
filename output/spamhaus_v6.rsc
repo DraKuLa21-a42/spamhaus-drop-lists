@@ -24,7 +24,6 @@
 /ipv6 firewall address-list add list=spamhaus_v6 address=2405:9fc0:1::/48
 /ipv6 firewall address-list add list=spamhaus_v6 address=2405:b180::/32
 /ipv6 firewall address-list add list=spamhaus_v6 address=2405:e880::/32
-/ipv6 firewall address-list add list=spamhaus_v6 address=2602:f68a::/40
 /ipv6 firewall address-list add list=spamhaus_v6 address=2602:f9bb::/36
 /ipv6 firewall address-list add list=spamhaus_v6 address=2602:ffa0::/36
 /ipv6 firewall address-list add list=spamhaus_v6 address=2604:be0:fff0::/44
