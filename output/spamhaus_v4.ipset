@@ -365,6 +365,7 @@ add spamhaus_v4 163.254.0.0/16
 add spamhaus_v4 163.47.19.0/24
 add spamhaus_v4 163.5.102.0/24
 add spamhaus_v4 163.50.0.0/16
+add spamhaus_v4 163.61.188.0/23
 add spamhaus_v4 163.61.216.0/24
 add spamhaus_v4 164.155.0.0/16
 add spamhaus_v4 164.215.103.0/24
