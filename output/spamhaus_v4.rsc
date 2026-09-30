@@ -1386,7 +1386,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=46.151.182.0/23
 /ip firewall address-list add list=spamhaus_v4 address=46.173.240.0/20
 /ip firewall address-list add list=spamhaus_v4 address=46.174.204.0/22
-/ip firewall address-list add list=spamhaus_v4 address=46.29.26.0/24
 /ip firewall address-list add list=spamhaus_v4 address=49.156.160.0/19
 /ip firewall address-list add list=spamhaus_v4 address=49.238.64.0/18
 /ip firewall address-list add list=spamhaus_v4 address=49.89.240.0/22
