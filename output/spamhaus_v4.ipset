@@ -315,7 +315,6 @@ add spamhaus_v4 155.66.0.0/16
 add spamhaus_v4 155.71.0.0/16
 add spamhaus_v4 155.73.0.0/16
 add spamhaus_v4 155.94.203.0/24
-add spamhaus_v4 156.226.209.0/24
 add spamhaus_v4 156.234.43.0/24
 add spamhaus_v4 156.247.40.0/24
 add spamhaus_v4 156.247.54.0/24
@@ -425,6 +424,7 @@ add spamhaus_v4 171.26.0.0/16
 add spamhaus_v4 172.111.128.0/17
 add spamhaus_v4 172.247.38.0/24
 add spamhaus_v4 172.94.9.0/24
+add spamhaus_v4 173.239.214.0/24
 add spamhaus_v4 173.239.224.0/24
 add spamhaus_v4 173.244.55.0/24
 add spamhaus_v4 173.44.0.0/19
@@ -444,6 +444,7 @@ add spamhaus_v4 178.16.52.0/22
 add spamhaus_v4 178.20.210.0/24
 add spamhaus_v4 178.236.252.0/24
 add spamhaus_v4 179.43.175.0/24
+add spamhaus_v4 180.178.180.0/24
 add spamhaus_v4 180.178.192.0/18
 add spamhaus_v4 180.235.124.0/22
 add spamhaus_v4 181.177.64.0/18
@@ -891,6 +892,7 @@ add spamhaus_v4 202.148.32.0/20
 add spamhaus_v4 202.152.192.0/20
 add spamhaus_v4 202.159.80.0/20
 add spamhaus_v4 202.168.80.0/22
+add spamhaus_v4 202.170.75.0/24
 add spamhaus_v4 202.183.0.0/19
 add spamhaus_v4 202.189.80.0/20
 add spamhaus_v4 202.27.100.0/22
@@ -1302,6 +1304,7 @@ add spamhaus_v4 45.135.194.0/24
 add spamhaus_v4 45.135.48.0/22
 add spamhaus_v4 45.136.5.0/24
 add spamhaus_v4 45.137.201.0/24
+add spamhaus_v4 45.138.12.0/24
 add spamhaus_v4 45.138.16.0/24
 add spamhaus_v4 45.139.104.0/24
 add spamhaus_v4 45.141.12.0/22
@@ -1489,6 +1492,7 @@ add spamhaus_v4 89.23.126.0/24
 add spamhaus_v4 89.251.29.0/24
 add spamhaus_v4 89.32.170.0/24
 add spamhaus_v4 89.32.202.0/24
+add spamhaus_v4 89.32.41.0/24
 add spamhaus_v4 89.32.43.0/24
 add spamhaus_v4 89.33.134.0/24
 add spamhaus_v4 89.33.206.0/24
