@@ -222,8 +222,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=125.31.192.0/18
 /ip firewall address-list add list=spamhaus_v4 address=125.58.0.0/18
 /ip firewall address-list add list=spamhaus_v4 address=129.56.0.0/16
-/ip firewall address-list add list=spamhaus_v4 address=13.143.144.0/24
-/ip firewall address-list add list=spamhaus_v4 address=13.143.247.0/24
 /ip firewall address-list add list=spamhaus_v4 address=130.12.180.0/22
 /ip firewall address-list add list=spamhaus_v4 address=130.12.44.0/22
 /ip firewall address-list add list=spamhaus_v4 address=130.148.0.0/16
@@ -502,7 +500,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=185.239.84.0/22
 /ip firewall address-list add list=spamhaus_v4 address=185.241.208.0/24
 /ip firewall address-list add list=spamhaus_v4 address=185.241.211.0/24
-/ip firewall address-list add list=spamhaus_v4 address=185.242.246.0/24
 /ip firewall address-list add list=spamhaus_v4 address=185.242.3.0/24
 /ip firewall address-list add list=spamhaus_v4 address=185.243.96.0/24
 /ip firewall address-list add list=spamhaus_v4 address=185.244.249.0/24
@@ -1279,7 +1276,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=42.128.0.0/12
 /ip firewall address-list add list=spamhaus_v4 address=42.160.0.0/12
 /ip firewall address-list add list=spamhaus_v4 address=42.208.0.0/12
-/ip firewall address-list add list=spamhaus_v4 address=43.226.17.0/24
 /ip firewall address-list add list=spamhaus_v4 address=43.228.157.0/24
 /ip firewall address-list add list=spamhaus_v4 address=43.228.159.0/24
 /ip firewall address-list add list=spamhaus_v4 address=43.229.240.0/21
@@ -1302,7 +1298,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=45.125.32.0/22
 /ip firewall address-list add list=spamhaus_v4 address=45.125.66.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.129.187.0/24
-/ip firewall address-list add list=spamhaus_v4 address=45.13.186.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.13.213.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.13.37.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.132.180.0/24
@@ -1543,7 +1538,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=91.220.163.0/24
 /ip firewall address-list add list=spamhaus_v4 address=91.224.92.0/24
 /ip firewall address-list add list=spamhaus_v4 address=91.229.52.0/22
-/ip firewall address-list add list=spamhaus_v4 address=91.231.222.0/24
 /ip firewall address-list add list=spamhaus_v4 address=91.232.18.0/24
 /ip firewall address-list add list=spamhaus_v4 address=91.233.0.0/23
 /ip firewall address-list add list=spamhaus_v4 address=91.235.130.0/23
