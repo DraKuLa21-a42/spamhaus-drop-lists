@@ -75,9 +75,6 @@ add spamhaus_v6 2a12:6740::/30
 add spamhaus_v6 2a12:a800:1::/48
 add spamhaus_v6 2a12:a800:7::/48
 add spamhaus_v6 2a12:a800:8::/48
-add spamhaus_v6 2a12:dd47:8500::/40
-add spamhaus_v6 2a12:dd47:db00::/40
-add spamhaus_v6 2a13:df80:a800::/38
 add spamhaus_v6 2a13:df84::/32
 add spamhaus_v6 2a13:df87:b600::/39
 add spamhaus_v6 2a13:ef45::/32

@@ -1605,7 +1605,6 @@ add spamhaus_v4 94.26.106.0/24
 add spamhaus_v4 94.26.38.0/24
 add spamhaus_v4 94.26.88.0/24
 add spamhaus_v4 94.74.164.0/24
-add spamhaus_v4 94.74.191.0/24
 add spamhaus_v4 95.155.168.0/22
 add spamhaus_v4 95.155.174.0/23
 add spamhaus_v4 95.164.131.0/24
