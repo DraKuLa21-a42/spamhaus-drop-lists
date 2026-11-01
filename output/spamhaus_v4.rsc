@@ -925,8 +925,6 @@
 /ip firewall address-list add list=spamhaus_v4 address=203.26.150.0/24
 /ip firewall address-list add list=spamhaus_v4 address=203.9.0.0/19
 /ip firewall address-list add list=spamhaus_v4 address=203.91.73.0/24
-/ip firewall address-list add list=spamhaus_v4 address=204.106.128.0/18
-/ip firewall address-list add list=spamhaus_v4 address=204.106.192.0/19
 /ip firewall address-list add list=spamhaus_v4 address=204.107.132.0/24
 /ip firewall address-list add list=spamhaus_v4 address=204.107.208.0/24
 /ip firewall address-list add list=spamhaus_v4 address=204.110.144.0/20
