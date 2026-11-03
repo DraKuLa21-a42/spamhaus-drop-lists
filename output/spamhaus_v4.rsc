@@ -651,6 +651,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=194.0.234.0/24
 /ip firewall address-list add list=spamhaus_v4 address=194.102.227.0/24
 /ip firewall address-list add list=spamhaus_v4 address=194.11.246.0/24
+/ip firewall address-list add list=spamhaus_v4 address=194.116.236.0/24
 /ip firewall address-list add list=spamhaus_v4 address=194.180.64.0/20
 /ip firewall address-list add list=spamhaus_v4 address=194.26.192.0/24
 /ip firewall address-list add list=spamhaus_v4 address=194.26.29.0/24
@@ -924,6 +925,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=203.189.234.0/23
 /ip firewall address-list add list=spamhaus_v4 address=203.191.64.0/18
 /ip firewall address-list add list=spamhaus_v4 address=203.195.0.0/18
+/ip firewall address-list add list=spamhaus_v4 address=203.202.232.0/24
 /ip firewall address-list add list=spamhaus_v4 address=203.26.150.0/24
 /ip firewall address-list add list=spamhaus_v4 address=203.9.0.0/19
 /ip firewall address-list add list=spamhaus_v4 address=203.91.73.0/24
@@ -1250,6 +1252,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=31.217.252.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.222.236.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.40.201.0/24
+/ip firewall address-list add list=spamhaus_v4 address=31.40.204.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.43.185.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.56.19.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.56.209.0/24
@@ -1319,6 +1322,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=45.138.16.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.139.104.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.141.12.0/22
+/ip firewall address-list add list=spamhaus_v4 address=45.141.148.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.141.215.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.141.56.0/24
 /ip firewall address-list add list=spamhaus_v4 address=45.141.58.0/23
