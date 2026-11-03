@@ -3,6 +3,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=1.19.0.0/16
 /ip firewall address-list add list=spamhaus_v4 address=1.32.128.0/18
 /ip firewall address-list add list=spamhaus_v4 address=101.0.16.0/20
+/ip firewall address-list add list=spamhaus_v4 address=101.1.16.0/24
 /ip firewall address-list add list=spamhaus_v4 address=101.134.0.0/15
 /ip firewall address-list add list=spamhaus_v4 address=101.192.72.0/22
 /ip firewall address-list add list=spamhaus_v4 address=101.192.84.0/22
@@ -739,6 +740,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=198.202.237.0/24
 /ip firewall address-list add list=spamhaus_v4 address=198.204.0.0/21
 /ip firewall address-list add list=spamhaus_v4 address=198.206.140.0/24
+/ip firewall address-list add list=spamhaus_v4 address=198.206.152.0/24
 /ip firewall address-list add list=spamhaus_v4 address=198.212.132.0/24
 /ip firewall address-list add list=spamhaus_v4 address=198.235.160.0/20
 /ip firewall address-list add list=spamhaus_v4 address=198.240.64.0/18
@@ -1185,6 +1187,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=213.176.24.0/22
 /ip firewall address-list add list=spamhaus_v4 address=213.177.179.0/24
 /ip firewall address-list add list=spamhaus_v4 address=213.209.159.0/24
+/ip firewall address-list add list=spamhaus_v4 address=213.5.130.0/24
 /ip firewall address-list add list=spamhaus_v4 address=216.137.144.0/20
 /ip firewall address-list add list=spamhaus_v4 address=216.179.128.0/17
 /ip firewall address-list add list=spamhaus_v4 address=216.189.29.0/24
@@ -1253,6 +1256,7 @@
 /ip firewall address-list add list=spamhaus_v4 address=31.56.52.0/23
 /ip firewall address-list add list=spamhaus_v4 address=31.57.184.0/23
 /ip firewall address-list add list=spamhaus_v4 address=31.57.216.0/24
+/ip firewall address-list add list=spamhaus_v4 address=31.59.163.0/24
 /ip firewall address-list add list=spamhaus_v4 address=31.76.32.0/24
 /ip firewall address-list add list=spamhaus_v4 address=36.0.128.0/17
 /ip firewall address-list add list=spamhaus_v4 address=36.0.8.0/21
