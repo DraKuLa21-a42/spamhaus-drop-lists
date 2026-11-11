@@ -529,7 +529,6 @@ add spamhaus_v4 185.7.214.0/23
 add spamhaus_v4 185.81.68.0/24
 add spamhaus_v4 185.84.157.0/24
 add spamhaus_v4 185.93.89.0/24
-add spamhaus_v4 185.99.98.0/24
 add spamhaus_v4 186.179.0.0/18
 add spamhaus_v4 186.65.112.0/20
 add spamhaus_v4 187.19.64.0/20
